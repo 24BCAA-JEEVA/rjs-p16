@@ -1,24 +1,31 @@
-import Navigation from "./Navigation";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+function Home() {
+  return <h1>Home</h1>;
+}
+
+function About() {
+  return <h1>About Us</h1>;
+}
+
+function Contact() {
+  return <h1>Contact Us</h1>;
+}
 
 function App() {
   return (
     <BrowserRouter>
-    <header>
-      <h1>My React Website</h1>
       <nav>
-      <Navigation />
+        <Link to="/">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/contact">Contact Us</Link>
       </nav>
-      </header>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About us />} />
-        <Route path="/contact" element={<Contact us/>} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );
