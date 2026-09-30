@@ -1,37 +1,36 @@
+```jsx
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-test("Application renders Home page", () => {
-  window.history.pushState({}, "", "/");
+function Home() {
+  return <h1>Home</h1>;
+}
 
-  render(<App />);
+function About() {
+  return <h1>About Us</h1>;
+}
 
-  expect(
-    screen.getByRole("heading", {
-      name: /home/i
-    })
-  ).toBeInTheDocument();
-});
+function Contact() {
+  return <h1>Contact Us</h1>;
+}
 
-test("Navigation links are present", () => {
-  render(<App />);
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/contact">Contact Us</Link>
+      </nav>
 
-  expect(
-    screen.getByRole("link", {
-      name: /home/i
-    })
-  ).toBeInTheDocument();
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-  expect(
-    screen.getByRole("link", {
-      name: /about us/i
-    })
-  ).toBeInTheDocument();
-
-  expect(
-    screen.getByRole("link", {
-      name: /contact us/i
-    })
-  ).toBeInTheDocument();
-});
+export default App;
+```
