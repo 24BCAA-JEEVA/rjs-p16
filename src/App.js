@@ -1,31 +1,27 @@
-import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contacts";
 
-function Home() {
-  return <h1>Home</h1>;
-}
-
-function About() {
-  return <h1>About Us</h1>;
-}
-
-function Contact() {
-  return <h1>Contact Us</h1>;
-}
+import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/contact">Contact Us</Link>
-      </nav>
+    <BrowserRouter basename="/rjs-p16">
+      <header>
+        <h1>My React Website</h1>
+
+        <nav>
+          <Link to="/">Home</Link>{" "}
+          <Link to="/aboutus">About Us</Link>{" "}
+          <Link to="/contactus">Contact Us</Link>
+        </nav>
+      </header>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/contactus" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );
