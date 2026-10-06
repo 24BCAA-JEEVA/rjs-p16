@@ -1,5 +1,12 @@
 import React from "react";
-function Contact(){
-    return(
-        <h1>Contact us page</h1>);}
-export default Contact;
+
+function Contacts() {
+  return (
+    <div className="page">
+      <h1>Contact Us</h1>
+      <p>You can contact us through this page.</p>
+    </div>
+  );
+}
+
+export default Contacts;
