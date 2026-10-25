@@ -1,34 +1,38 @@
+import '@testing-library/jest-dom';
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-function Home() {
-  return <h1>Home</h1>;
-}
+test("Application renders Home page", () => {
+  window.history.pushState({}, "", "/");
 
-function About() {
-  return <h1>About Us</h1>;
-}
+  render(<App />);
 
-function Contact() {
-  return <h1>Contact Us</h1>;
-}
+  expect(
+    screen.getByRole("heading", {
+      name: /home/i
+    })
+  ).toBeInTheDocument();
+});
 
-function App() {
-  return (
-    <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/contact">Contact Us</Link>
-      </nav>
+test("Navigation links are present", () => {
+  render(<App />);
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+  expect(
+    screen.getByRole("link", {
+      name: /home/i
+    })
+  ).toBeInTheDocument();
 
-export default App;
+  expect(
+    screen.getByRole("link", {
+      name: /about us/i
+    })
+  ).toBeInTheDocument();
+
+  expect(
+    screen.getByRole("link", {
+      name: /contact us/i
+    })
+  ).toBeInTheDocument();
+});
